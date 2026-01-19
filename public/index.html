@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RoboFocus - Assistente para Rotinas e Foco</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Login Page -->
+    <div id="login-page" class="page active">
+        <div class="login-container">
+            <div class="login-content">
+                <!-- Logo -->
+                <div class="login-logo">
+                    <div class="logo-icon logo-large"></div>
+                </div>
+                
+                <div class="login-header">
+                    <h1>RoboFocus</h1>
+                    <p>Assistente para rotinas e foco</p>
+                </div>
+
+                <!-- Login Card -->
+                <div class="login-card">
+                    <div class="login-card-header">
+                        <h2>Bem-vindo</h2>
+                        <p>Use sua chave de acesso institucional para entrar</p>
+                    </div>
+
+                    <form id="login-form">
+                        <div class="form-group">
+                            <label for="user-name">Seu nome</label>
+                            <input type="text" id="user-name" placeholder="Digite seu nome" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="access-key">Chave de acesso</label>
+                            <div class="input-with-icon">
+                                <svg class="input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/>
+                                </svg>
+                                <input type="text" id="access-key" placeholder="XXXX-XXXX" required>
+                            </div>
+                        </div>
+
+                        <div id="login-error" class="error-message hidden">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="12" y1="8" x2="12" y2="12"></line>
+                                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                            </svg>
+                            <p></p>
+                        </div>
+
+                        <button type="submit" class="btn-primary" id="login-btn">
+                            <span>Entrar</span>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </button>
+                    </form>
+
+                    <div class="login-help">
+                        <p>Não tem uma chave de acesso?<br>Entre em contato com sua instituição.</p>
+                    </div>
+
+                    <div class="demo-keys">
+                        <p>Chaves de demonstração:</p>
+                        <div class="demo-keys-list">
+                            <code>ROBO2026</code>
+                            <code>FOCUS123</code>
+                            <code>INSTITUICAO01</code>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="login-footer">
+                    <p>Sistema desenvolvido para apoiar crianças e<br>adolescentes com ADHD</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard Page -->
+    <div id="dashboard-page" class="page">
+        <div class="page-container">
+            <div class="page-header">
+                <div class="header-with-logo">
+                    <div class="logo-icon logo-medium"></div>
+                    <div>
+                        <h1>Bem vindo, <span id="user-name-display">Alex</span>!</h1>
+                        <p>Acredito em você mesmo!</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-cards">
+                <div class="card progress-card">
+                    <div class="card-header">
+                        <h3>Progresso de Hoje</h3>
+                        <span class="points-badge" id="dashboard-points">1250 pts</span>
+                    </div>
+                    <div class="progress-info">
+                        <p><span id="completed-today">3</span> de <span id="total-today">6</span> tarefas completas</p>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress-fill"></div>
+                    </div>
+                </div>
+
+                <div class="card quick-actions-card">
+                    <h3>Ações Rápidas</h3>
+                    <div class="quick-actions-grid">
+                        <button class="quick-action-btn" data-navigate="routine">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="16" y1="2" x2="16" y2="6"></line>
+                                <line x1="8" y1="2" x2="8" y2="6"></line>
+                                <line x1="3" y1="10" x2="21" y2="10"></line>
+                            </svg>
+                            <span>Ver Rotina</span>
+                        </button>
+                        <button class="quick-action-btn" data-navigate="focus">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <polyline points="12 6 12 12 16 14"></polyline>
+                            </svg>
+                            <span>Modo Foco</span>
+                        </button>
+                        <button class="quick-action-btn" data-navigate="checkin">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                            </svg>
+                            <span>Como me Sinto</span>
+                        </button>
+                        <button class="quick-action-btn" data-navigate="chat">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path>
+                                <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                                <line x1="12" y1="19" x2="12" y2="22"></line>
+                            </svg>
+                            <span>Conversar</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Routine Planner Page -->
+    <div id="routine-page" class="page">
+        <div class="page-container">
+            <div class="page-header">
+                <div class="header-with-logo">
+                    <div class="logo-icon logo-medium"></div>
+                    <div>
+                        <h1>Atividades e Rotina</h1>
+                        <p id="routine-progress">3 de 6 tarefas completas</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="routine-sections" id="routine-sections">
+                <!-- Tasks will be inserted here by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Focus Mode Page -->
+    <div id="focus-page" class="page">
+        <div class="focus-container">
+            <button class="close-btn" id="focus-close">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+
+            <div class="focus-content">
+                <div class="focus-header">
+                    <h1>Modo Foco</h1>
+                    <p>Respire fundo e concentre-se</p>
+                </div>
+
+                <div class="logo-icon logo-focus" id="focus-logo"></div>
+
+                <div class="timer-display" id="timer-display">25:00</div>
+
+                <div class="focus-controls">
+                    <button class="focus-btn" id="focus-play">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                        </svg>
+                    </button>
+                    <button class="focus-btn hidden" id="focus-pause">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                            <rect x="6" y="4" width="4" height="16"></rect>
+                            <rect x="14" y="4" width="4" height="16"></rect>
+                        </svg>
+                    </button>
+                    <button class="focus-btn" id="focus-reset">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="1 4 1 10 7 10"></polyline>
+                            <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="focus-info">
+                    <p>Sessões completas hoje: <strong id="focus-sessions">0</strong></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Emotional Check-in Page -->
+    <div id="checkin-page" class="page">
+        <div class="page-container">
+            <div class="checkin-content" id="checkin-content">
+                <div class="page-header center">
+                    <h1>Como você está se sentindo?</h1>
+                    <p>Sua emoção importa para mim</p>
+                </div>
+
+                <div class="mood-grid">
+                    <button class="mood-btn" data-mood="happy">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+                            <line x1="9" y1="9" x2="9.01" y2="9"></line>
+                            <line x1="15" y1="9" x2="15.01" y2="9"></line>
+                        </svg>
+                        <span>Feliz</span>
+                    </button>
+                    <button class="mood-btn" data-mood="ok">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="8" y1="15" x2="16" y2="15"></line>
+                            <line x1="9" y1="9" x2="9.01" y2="9"></line>
+                            <line x1="15" y1="9" x2="15.01" y2="9"></line>
+                        </svg>
+                        <span>OK</span>
+                    </button>
+                    <button class="mood-btn" data-mood="sad">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M16 16s-1.5-2-4-2-4 2-4 2"></path>
+                            <line x1="9" y1="9" x2="9.01" y2="9"></line>
+                            <line x1="15" y1="9" x2="15.01" y2="9"></line>
+                        </svg>
+                        <span>Triste</span>
+                    </button>
+                    <button class="mood-btn" data-mood="angry">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M16 16s-1.5-2-4-2-4 2-4 2"></path>
+                            <path d="M7.5 8 10 9"></path>
+                            <path d="m14 9 2.5-1"></path>
+                        </svg>
+                        <span>Irritado</span>
+                    </button>
+                </div>
+
+                <div class="form-group">
+                    <label for="checkin-note">Quer me contar mais? (opcional)</label>
+                    <textarea id="checkin-note" rows="4" placeholder="Escreva como está se sentindo..."></textarea>
+                </div>
+
+                <button class="btn-primary" id="checkin-submit">Salvar</button>
+            </div>
+
+            <div class="checkin-success hidden" id="checkin-success">
+                <div class="logo-icon logo-focus"></div>
+                <h2>Obrigado por compartilhar!</h2>
+                <p>Suas emoções são importantes. Continue assim!</p>
+                <button class="btn-primary" id="checkin-done">Voltar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI Chat Page -->
+    <div id="chat-page" class="page">
+        <div class="chat-container">
+            <div class="chat-header">
+                <div class="header-with-logo">
+                    <div class="logo-icon logo-medium"></div>
+                    <div>
+                        <h1>Assistente RoboFocus</h1>
+                        <div class="status-indicator">
+                            <span class="status-dot"></span>
+                            <span>Online</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chat-messages" id="chat-messages">
+                <div class="message bot-message">
+                    <div class="message-content">
+                        <p>Olá! Eu sou o assistente RoboFocus. Como posso ajudá-lo hoje?</p>
+                    </div>
+                    <span class="message-time">Agora</span>
+                </div>
+            </div>
+
+            <div class="chat-input-container">
+                <form id="chat-form">
+                    <input type="text" id="chat-input" placeholder="Digite sua mensagem...">
+                    <button type="submit" class="chat-send-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="22" y1="2" x2="11" y2="13"></line>
+                            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rewards Page -->
+    <div id="rewards-page" class="page">
+        <div class="page-container">
+            <div class="page-header center">
+                <div class="logo-icon logo-small"></div>
+                <h1>Suas Recompensas</h1>
+                <p>Continue conquistando!</p>
+            </div>
+
+            <div class="points-display">
+                <div class="points-circle">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                    </svg>
+                    <span id="total-points">1250</span>
+                    <p>Pontos Totais</p>
+                </div>
+            </div>
+
+            <div class="rewards-sections">
+                <div class="card">
+                    <h3>Conquistas</h3>
+                    <div class="achievements-grid" id="achievements-grid">
+                        <!-- Achievements will be added by JS -->
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Próximo Nível</h3>
+                    <div class="level-progress">
+                        <div class="level-info">
+                            <span>Nível 5: Mestre do Foco</span>
+                            <span>250/500 pts</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 50%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Profile Page -->
+    <div id="profile-page" class="page">
+        <div class="page-container">
+            <div class="page-header center">
+                <div class="logo-icon logo-avatar"></div>
+                <h1 id="profile-name">Alex</h1>
+                <p id="profile-email">usuario@instituicao.com.br</p>
+            </div>
+
+            <div class="profile-sections">
+                <div class="card">
+                    <h3>Preferências</h3>
+                    <div class="settings-list">
+                        <div class="setting-item">
+                            <div>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path>
+                                    <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path>
+                                </svg>
+                                <span>Notificações</span>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <div class="setting-item">
+                            <div>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                                    <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                                </svg>
+                                <span>Sons</span>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Conta</h3>
+                    <button class="logout-btn" id="logout-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                            <polyline points="16 17 21 12 16 7"></polyline>
+                            <line x1="21" y1="12" x2="9" y2="12"></line>
+                        </svg>
+                        <span>Sair</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav" id="bottom-nav">
+        <button class="nav-item active" data-page="dashboard">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+            <span>Início</span>
+        </button>
+        <button class="nav-item" data-page="routine">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+            </svg>
+            <span>Rotina</span>
+        </button>
+        <button class="nav-item" data-page="chat">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+            </svg>
+            <span>Chat</span>
+        </button>
+        <button class="nav-item" data-page="rewards">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+            </svg>
+            <span>Recompensas</span>
+        </button>
+        <button class="nav-item" data-page="profile">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+            <span>Perfil</span>
+        </button>
+    </nav>
+
+    <script src="main.js"></script>
+</body>
+</html>
