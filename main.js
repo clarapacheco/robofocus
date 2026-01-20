@@ -213,7 +213,7 @@ function renderUpcomingTasks() {
     allTasksDone.classList.add('hidden');
     
     // Render up to 3 upcoming tasks
-    const tasksToShow = incompleteTasks.slice(0, 3);
+    const tasksToShow = incompleteTasks.slice(0, 1);
     let html = '';
     
     tasksToShow.forEach(task => {
